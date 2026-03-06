@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import { initDatabase } from './db/database.js';
 import reservationsRoutes from './routes/reservations.js';
 import voiceRoutes from './routes/voice.js';
+import settingsRoutes from './routes/settings.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api/reservations', reservationsRoutes);
 app.use('/voice', voiceRoutes);
+app.use('/api/settings', settingsRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

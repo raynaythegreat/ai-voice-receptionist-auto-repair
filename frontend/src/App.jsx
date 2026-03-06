@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SettingsPage from './components/SettingsPage';
 
 const API_BASE = '/api/appointments';
 
@@ -110,19 +111,25 @@ function App() {
       </div>
 
       <div className="nav">
-        <button 
+        <button
           className={`nav-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
-          onClick={() => setActiveTab('dashboard')}
+          onClick={() => {
+            setActiveTab('dashboard');
+            setShowAddForm(false);
+          }}
         >
           📊 Dashboard
         </button>
-        <button 
+        <button
           className={`nav-btn ${activeTab === 'appointments' ? 'active' : ''}`}
-          onClick={() => setActiveTab('appointments')}
+          onClick={() => {
+            setActiveTab('appointments');
+            setShowAddForm(false);
+          }}
         >
           🗓️ Appointments
         </button>
-        <button 
+        <button
           className={`nav-btn ${activeTab === 'add' ? 'active' : ''}`}
           onClick={() => {
             setActiveTab('add');
@@ -130,6 +137,15 @@ function App() {
           }}
         >
           ➕ Add Appointment
+        </button>
+        <button
+          className={`nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
+          onClick={() => {
+            setActiveTab('settings');
+            setShowAddForm(false);
+          }}
+        >
+          ⚙️ Settings
         </button>
       </div>
 
@@ -328,6 +344,10 @@ function App() {
                 </button>
               </form>
             </div>
+          )}
+
+          {activeTab === 'settings' && (
+            <SettingsPage />
           )}
         </>
       )}
